@@ -1,0 +1,339 @@
+{
+  "name": "Task2 - Morning Brief (GitHub -> Discord)",
+  "nodes": [
+    {
+      "id": "t2-1",
+      "name": "Every 1 hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        300
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "t2-2",
+      "name": "GitHub: search React repos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        300
+      ],
+      "parameters": {
+        "url": "https://api.github.com/search/repositories",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "topic:react"
+            },
+            {
+              "name": "sort",
+              "value": "stars"
+            },
+            {
+              "name": "order",
+              "value": "desc"
+            },
+            {
+              "name": "per_page",
+              "value": "10"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-morning-brief"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "onError": "continueErrorOutput",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "id": "t2-3",
+      "name": "Top 5 Repos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        220
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const repos = ($input.first().json.items || []).slice(0, 5).map(r => ({\n  name: r.full_name,\n  stars: r.stargazers_count,\n  url: r.html_url,\n  description: r.description || '',\n  language: r.language || 'n/a'\n}));\nrepos.sort((a, b) => b.stars - a.stars);\nif (repos.length === 0) { throw new Error('GitHub returned no repositories'); }\nreturn repos.map(r => ({ json: r }));"
+      }
+    },
+    {
+      "id": "t2-4",
+      "name": "GitHub: latest commit of #1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        220
+      ],
+      "parameters": {
+        "url": "=https://api.github.com/repos/{{ $('Top 5 Repos').first().json.name }}/commits",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "per_page",
+              "value": "1"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "User-Agent",
+              "value": "n8n-morning-brief"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "onError": "continueErrorOutput",
+      "executeOnce": true
+    },
+    {
+      "id": "t2-5",
+      "name": "Build digest",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        200
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const repos = $('Top 5 Repos').all().map(i => i.json);\nconst c = $input.first().json;\nconst lastCommit = c.commit ? c.commit.message.split('\\n')[0] : 'n/a';\nconst lastDate = c.commit ? c.commit.author.date : 'n/a';\nconst lines = repos.map((r, i) => `${i + 1}. ${r.name} - ${r.stars} stars - ${r.description.slice(0, 80)} (${r.url})`);\nconst content = `**Morning brief: top React repos on GitHub**\\n${lines.join('\\n')}\\n\\nLatest commit on #1 (${repos[0].name}): ${lastCommit} (${lastDate})`;\nreturn [{ json: { content: content.slice(0, 1900), topStars: repos[0].stars, topRepo: repos[0].name } }];"
+      }
+    },
+    {
+      "id": "t2-6",
+      "name": "IF top repo stars > 1000",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        200
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.topStars }}",
+              "rightValue": 1000,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "t2-7",
+      "name": "Discord: popular digest",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        120
+      ],
+      "parameters": {
+        "authentication": "webhook",
+        "resource": "message",
+        "operation": "sendLegacy",
+        "content": "=:fire: {{ $json.content }}"
+      },
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "REPLACE_ME",
+          "name": "Discord Webhook account"
+        }
+      }
+    },
+    {
+      "id": "t2-8",
+      "name": "Discord: quiet digest",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        300
+      ],
+      "parameters": {
+        "authentication": "webhook",
+        "resource": "message",
+        "operation": "sendLegacy",
+        "content": "=:seedling: {{ $json.content }}"
+      },
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "REPLACE_ME",
+          "name": "Discord Webhook account"
+        }
+      }
+    },
+    {
+      "id": "t2-9",
+      "name": "Discord: ALERT API failed",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        960,
+        460
+      ],
+      "parameters": {
+        "authentication": "webhook",
+        "resource": "message",
+        "operation": "sendLegacy",
+        "content": "=:warning: Morning brief failed. Node error: {{ $json.error ? ($json.error.message || JSON.stringify($json.error)) : JSON.stringify($json) }}"
+      },
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "REPLACE_ME",
+          "name": "Discord Webhook account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Every 1 hour": {
+      "main": [
+        [
+          {
+            "node": "GitHub: search React repos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub: search React repos": {
+      "main": [
+        [
+          {
+            "node": "Top 5 Repos",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discord: ALERT API failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Top 5 Repos": {
+      "main": [
+        [
+          {
+            "node": "GitHub: latest commit of #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub: latest commit of #1": {
+      "main": [
+        [
+          {
+            "node": "Build digest",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discord: ALERT API failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build digest": {
+      "main": [
+        [
+          {
+            "node": "IF top repo stars > 1000",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF top repo stars > 1000": {
+      "main": [
+        [
+          {
+            "node": "Discord: popular digest",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discord: quiet digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "tags": []
+}

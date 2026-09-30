@@ -1,0 +1,160 @@
+errors-authorization/01-register-user-a (201 Created) - 46 ms
+Assertions
+   ✓ res.status: eq 201
+errors-authorization/02-register-user-b (201 Created) - 34 ms
+Assertions
+   ✓ res.status: eq 201
+errors-authorization/03-user-a-creates-article (201 Created) - 11 ms
+Assertions
+   ✓ res.status: eq 201
+errors-authorization/04-user-b-tries-to-delete-403 (405 Method Not Allowed) - 6 ms
+[errors-authorization/04-user-b-tries-to-delete-403.bru] Post-response script error:
+
+File: errors-authorization/04-user-b-tries-to-delete-403.bru
+
+  17 |  assert {
+  18 |    res.status: eq 403
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.article[0]).to.eql("forbidden");
+  23 |  }
+  24 |  
+
+TypeError: cannot read property 'article' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-authorization/04-user-b-tries-to-delete-403.bru:22:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-authorization/04-user-b-tries-to-delete-403.bru:23:3)
+    Host: TypeError: cannot read property 'article' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'article' of undefined
+Assertions
+   ✕ res.status: eq 403
+      expected 405 to equal 403
+errors-authorization/05-user-b-tries-to-update-403 (200 OK) - 12 ms
+[errors-authorization/05-user-b-tries-to-update-403.bru] Post-response script error:
+
+File: errors-authorization/05-user-b-tries-to-update-403.bru
+
+  25 |  assert {
+  26 |    res.status: eq 403
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.errors.article[0]).to.eql("forbidden");
+  31 |  }
+  32 |  
+
+TypeError: cannot read property 'article' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-authorization/05-user-b-tries-to-update-403.bru:30:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-authorization/05-user-b-tries-to-update-403.bru:31:3)
+    Host: TypeError: cannot read property 'article' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'article' of undefined
+Assertions
+   ✕ res.status: eq 403
+      expected 200 to equal 403
+errors-authorization/06-user-a-creates-a-comment-on-the-article (201 Created) - 9 ms
+Assertions
+   ✓ res.status: eq 201
+errors-authorization/07-user-b-tries-to-delete-a-s-comment-403 (204 No Content) - 8 ms
+[errors-authorization/07-user-b-tries-to-delete-a-s-comment-403.bru] Post-response script error:
+
+File: errors-authorization/07-user-b-tries-to-delete-a-s-comment-403.bru
+
+  17 |  assert {
+  18 |    res.status: eq 403
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.comment[0]).to.eql("forbidden");
+  23 |  }
+  24 |  
+
+TypeError: cannot read property 'comment' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-authorization/07-user-b-tries-to-delete-a-s-comment-403.bru:22:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-authorization/07-user-b-tries-to-delete-a-s-comment-403.bru:23:3)
+    Host: TypeError: cannot read property 'comment' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'comment' of undefined
+Assertions
+   ✕ res.status: eq 403
+      expected 204 to equal 403
+errors-authorization/08-verify-comment-survived-the-failed-delete (200 OK) - 6 ms
+[errors-authorization/08-verify-comment-survived-the-failed-delete.bru] Post-response script error:
+
+File: errors-authorization/08-verify-comment-survived-the-failed-delete.bru
+
+  13 |  assert {
+  14 |    res.status: eq 200
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.comments.length).to.be.at.least(1);
+  19 |    expect(res.body.comments[0].body).to.eql("A's comment");
+  20 |  }
+  21 |  
+
+AssertionError: expected +0 to be at least 1
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at p (eval.js:410:4199)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-authorization/08-verify-comment-survived-the-failed-delete.bru:18:48)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-authorization/08-verify-comment-survived-the-failed-delete.bru:20:3)
+    Host: AssertionError: expected +0 to be at least 1
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected +0 to be at least 1
+Assertions
+   ✓ res.status: eq 200
+errors-authorization/09-cleanup-user-a-deletes-article (405 Method Not Allowed) - 9 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+
+📊 Execution Summary
+┌───────────────┬────────────────────────┐
+│ Metric        │         Result         │
+├───────────────┼────────────────────────┤
+│ Status        │         ✗ FAIL         │
+├───────────────┼────────────────────────┤
+│ Requests      │ 9 (4 Passed, 5 Failed) │
+├───────────────┼────────────────────────┤
+│ Tests         │          0/0           │
+├───────────────┼────────────────────────┤
+│ Assertions    │          5/9           │
+├───────────────┼────────────────────────┤
+│ Duration (ms) │          2697          │
+└───────────────┴────────────────────────┘

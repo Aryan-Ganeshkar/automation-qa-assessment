@@ -1,0 +1,12 @@
+Bruno spec suite vs gothinkster Django backend
+auth                    20 requests  (1 Passed, 19 Failed)
+articles                17 requests  (8 Passed, 9 Failed)
+comments                13 requests  (12 Passed, 1 Failed)
+favorites                9 requests  (5 Passed, 4 Failed)
+feed                    12 requests  (5 Passed, 7 Failed)
+pagination               7 requests  (5 Passed, 2 Failed)
+errors-auth             20 requests  (3 Passed, 17 Failed)
+errors-articles         20 requests  (3 Passed, 17 Failed)
+errors-authorization     9 requests  (4 Passed, 5 Failed)
+errors-comments         10 requests  (2 Passed, 8 Failed)
+errors-profiles          6 requests  (1 Passed, 5 Failed)

@@ -1,0 +1,397 @@
+errors-auth/01-register-empty-username (400 Bad Request) - 39 ms
+[errors-auth/01-register-empty-username.bru] Post-response script error:
+
+File: errors-auth/01-register-empty-username.bru
+
+  23 |  assert {
+  24 |    res.status: eq 422
+  25 |  }
+  26 |  
+  27 |  script:post-response {
+> 28 |    expect(res.body.errors.username[0]).to.eql("can't be blank");
+  29 |  }
+  30 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/01-register-empty-username.bru:28:43)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/01-register-empty-username.bru:29:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/02-register-empty-email (400 Bad Request) - 7 ms
+[errors-auth/02-register-empty-email.bru] Post-response script error:
+
+File: errors-auth/02-register-empty-email.bru
+
+  23 |  assert {
+  24 |    res.status: eq 422
+  25 |  }
+  26 |  
+  27 |  script:post-response {
+> 28 |    expect(res.body.errors.email[0]).to.eql("can't be blank");
+  29 |  }
+  30 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/02-register-empty-email.bru:28:40)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/02-register-empty-email.bru:29:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/03-register-empty-password (400 Bad Request) - 7 ms
+[errors-auth/03-register-empty-password.bru] Post-response script error:
+
+File: errors-auth/03-register-empty-password.bru
+
+  23 |  assert {
+  24 |    res.status: eq 422
+  25 |  }
+  26 |  
+  27 |  script:post-response {
+> 28 |    expect(res.body.errors.password[0]).to.eql("can't be blank");
+  29 |  }
+  30 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/03-register-empty-password.bru:28:43)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/03-register-empty-password.bru:29:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/04-register-valid-user-for-duplicate-and-login-tests (201 Created) - 33 ms
+Assertions
+   ✓ res.status: eq 201
+errors-auth/05-register-duplicate-username (400 Bad Request) - 7 ms
+[errors-auth/05-register-duplicate-username.bru] Post-response script error:
+
+File: errors-auth/05-register-duplicate-username.bru
+
+  23 |  assert {
+  24 |    res.status: eq 409
+  25 |  }
+  26 |  
+  27 |  script:post-response {
+> 28 |    expect(res.body.errors.username[0]).to.eql("has already been taken");
+  29 |  }
+  30 |  
+
+AssertionError: expected 'user with this username already exist…' to deeply equal 'has already been taken'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/05-register-duplicate-username.bru:28:43)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/05-register-duplicate-username.bru:29:3)
+    Host: AssertionError: expected 'user with this username already exist…' to deeply equal 'has already been taken'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'user with this username already exist…' to deeply equal 'has already been taken'
+Assertions
+   ✕ res.status: eq 409
+      expected 400 to equal 409
+errors-auth/06-register-duplicate-email (400 Bad Request) - 7 ms
+[errors-auth/06-register-duplicate-email.bru] Post-response script error:
+
+File: errors-auth/06-register-duplicate-email.bru
+
+  23 |  assert {
+  24 |    res.status: eq 409
+  25 |  }
+  26 |  
+  27 |  script:post-response {
+> 28 |    expect(res.body.errors.email[0]).to.eql("has already been taken");
+  29 |  }
+  30 |  
+
+AssertionError: expected 'user with this email already exists.' to deeply equal 'has already been taken'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/06-register-duplicate-email.bru:28:40)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/06-register-duplicate-email.bru:29:3)
+    Host: AssertionError: expected 'user with this email already exists.' to deeply equal 'has already been taken'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'user with this email already exists.' to deeply equal 'has already been taken'
+Assertions
+   ✕ res.status: eq 409
+      expected 400 to equal 409
+errors-auth/07-login-empty-email (400 Bad Request) - 4 ms
+[errors-auth/07-login-empty-email.bru] Post-response script error:
+
+File: errors-auth/07-login-empty-email.bru
+
+  22 |  assert {
+  23 |    res.status: eq 422
+  24 |  }
+  25 |  
+  26 |  script:post-response {
+> 27 |    expect(res.body.errors.email[0]).to.eql("can't be blank");
+  28 |  }
+  29 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/07-login-empty-email.bru:27:40)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/07-login-empty-email.bru:28:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/08-login-empty-password (400 Bad Request) - 4 ms
+[errors-auth/08-login-empty-password.bru] Post-response script error:
+
+File: errors-auth/08-login-empty-password.bru
+
+  22 |  assert {
+  23 |    res.status: eq 422
+  24 |  }
+  25 |  
+  26 |  script:post-response {
+> 27 |    expect(res.body.errors.password[0]).to.eql("can't be blank");
+  28 |  }
+  29 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/08-login-empty-password.bru:27:43)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/08-login-empty-password.bru:28:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/09-login-wrong-password (400 Bad Request) - 31 ms
+[errors-auth/09-login-wrong-password.bru] Post-response script error:
+
+File: errors-auth/09-login-wrong-password.bru
+
+  22 |  assert {
+  23 |    res.status: eq 401
+  24 |  }
+  25 |  
+  26 |  script:post-response {
+> 27 |    expect(res.body.errors.credentials[0]).to.eql("invalid");
+  28 |  }
+  29 |  
+
+TypeError: cannot read property of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/09-login-wrong-password.bru:27:35)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/09-login-wrong-password.bru:28:3)
+    Host: TypeError: cannot read property of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 400 to equal 401
+errors-auth/10-get-user-no-auth (403 Forbidden) - 5 ms
+[errors-auth/10-get-user-no-auth.bru] Post-response script error:
+
+File: errors-auth/10-get-user-no-auth.bru
+
+  13 |  assert {
+  14 |    res.status: eq 401
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/10-get-user-no-auth.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/10-get-user-no-auth.bru:19:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-auth/11-put-user-no-auth (403 Forbidden) - 4 ms
+[errors-auth/11-put-user-no-auth.bru] Post-response script error:
+
+File: errors-auth/11-put-user-no-auth.bru
+
+  21 |  assert {
+  22 |    res.status: eq 401
+  23 |  }
+  24 |  
+  25 |  script:post-response {
+> 26 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  27 |  }
+  28 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/11-put-user-no-auth.bru:26:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-auth/11-put-user-no-auth.bru:27:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-auth/12-update-email-to-empty-string-should-reject (400 Bad Request) - 8 ms
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/13-update-username-to-empty-string-should-reject (400 Bad Request) - 8 ms
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/14-update-email-to-null-should-reject (400 Bad Request) - 11 ms
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/15-update-username-to-null-should-reject (400 Bad Request) - 7 ms
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-auth/16-update-password-to-empty-string-should-reject (200 OK) - 12 ms
+Assertions
+   ✕ res.status: eq 422
+      expected 200 to equal 422
+errors-auth/17-update-password-to-null-should-reject (200 OK) - 12 ms
+Assertions
+   ✕ res.status: eq 422
+      expected 200 to equal 422
+errors-auth/18-update-password-shorter-than-8-chars-should-reject (200 OK) - 11 ms
+Assertions
+   ✕ res.status: eq 422
+      expected 200 to equal 422
+errors-auth/19-update-password-to-8-char-simple-word-should-accept (200 OK) - 10 ms
+Assertions
+   ✓ res.status: eq 200
+errors-auth/20-update-password-to-64-chars-should-accept (200 OK) - 11 ms
+Assertions
+   ✓ res.status: eq 200
+
+📊 Execution Summary
+┌───────────────┬──────────────────────────┐
+│ Metric        │          Result          │
+├───────────────┼──────────────────────────┤
+│ Status        │          ✗ FAIL          │
+├───────────────┼──────────────────────────┤
+│ Requests      │ 20 (3 Passed, 17 Failed) │
+├───────────────┼──────────────────────────┤
+│ Tests         │           0/0            │
+├───────────────┼──────────────────────────┤
+│ Assertions    │           3/20           │
+├───────────────┼──────────────────────────┤
+│ Duration (ms) │           4508           │
+└───────────────┴──────────────────────────┘

@@ -1,0 +1,522 @@
+errors-articles/01-create-article-no-auth (403 Forbidden) - 17 ms
+[errors-articles/01-create-article-no-auth.bru] Post-response script error:
+
+File: errors-articles/01-create-article-no-auth.bru
+
+  23 |  assert {
+  24 |    res.status: eq 401
+  25 |  }
+  26 |  
+  27 |  script:post-response {
+> 28 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  29 |  }
+  30 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/01-create-article-no-auth.bru:28:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/01-create-article-no-auth.bru:29:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-articles/02-get-unknown-slug (404 Not Found) - 7 ms
+[errors-articles/02-get-unknown-slug.bru] Post-response script error:
+
+File: errors-articles/02-get-unknown-slug.bru
+
+  13 |  assert {
+  14 |    res.status: eq 404
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.article[0]).to.eql("not found");
+  19 |  }
+  20 |  
+
+AssertionError: expected 'A' to deeply equal 'not found'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/02-get-unknown-slug.bru:18:42)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/02-get-unknown-slug.bru:19:3)
+    Host: AssertionError: expected 'A' to deeply equal 'not found'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'A' to deeply equal 'not found'
+Assertions
+   ✓ res.status: eq 404
+errors-articles/03-update-no-auth (403 Forbidden) - 4 ms
+[errors-articles/03-update-no-auth.bru] Post-response script error:
+
+File: errors-articles/03-update-no-auth.bru
+
+  21 |  assert {
+  22 |    res.status: eq 401
+  23 |  }
+  24 |  
+  25 |  script:post-response {
+> 26 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  27 |  }
+  28 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/03-update-no-auth.bru:26:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/03-update-no-auth.bru:27:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-articles/04-delete-no-auth (403 Forbidden) - 3 ms
+[errors-articles/04-delete-no-auth.bru] Post-response script error:
+
+File: errors-articles/04-delete-no-auth.bru
+
+  13 |  assert {
+  14 |    res.status: eq 401
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/04-delete-no-auth.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/04-delete-no-auth.bru:19:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-articles/05-get-feed-no-auth (404 Not Found) - 5 ms
+[errors-articles/05-get-feed-no-auth.bru] Post-response script error:
+
+File: errors-articles/05-get-feed-no-auth.bru
+
+  13 |  assert {
+  14 |    res.status: eq 401
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/05-get-feed-no-auth.bru:18:29)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/05-get-feed-no-auth.bru:19:3)
+    Host: TypeError: cannot read property of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 404 to equal 401
+errors-articles/06-favorite-no-auth (403 Forbidden) - 4 ms
+[errors-articles/06-favorite-no-auth.bru] Post-response script error:
+
+File: errors-articles/06-favorite-no-auth.bru
+
+  13 |  assert {
+  14 |    res.status: eq 401
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/06-favorite-no-auth.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/06-favorite-no-auth.bru:19:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-articles/07-unfavorite-no-auth (403 Forbidden) - 3 ms
+[errors-articles/07-unfavorite-no-auth.bru] Post-response script error:
+
+File: errors-articles/07-unfavorite-no-auth.bru
+
+  13 |  assert {
+  14 |    res.status: eq 401
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/07-unfavorite-no-auth.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/07-unfavorite-no-auth.bru:19:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-articles/08-setup-register-for-authenticated-error-tests (201 Created) - 31 ms
+Assertions
+   ✓ res.status: eq 201
+errors-articles/09-create-article-empty-title (400 Bad Request) - 8 ms
+[errors-articles/09-create-article-empty-title.bru] Post-response script error:
+
+File: errors-articles/09-create-article-empty-title.bru
+
+  27 |  assert {
+  28 |    res.status: eq 422
+  29 |  }
+  30 |  
+  31 |  script:post-response {
+> 32 |    expect(res.body.errors.title[0]).to.eql("can't be blank");
+  33 |  }
+  34 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/09-create-article-empty-title.bru:32:40)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/09-create-article-empty-title.bru:33:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-articles/10-create-article-empty-description (400 Bad Request) - 8 ms
+[errors-articles/10-create-article-empty-description.bru] Post-response script error:
+
+File: errors-articles/10-create-article-empty-description.bru
+
+  27 |  assert {
+  28 |    res.status: eq 422
+  29 |  }
+  30 |  
+  31 |  script:post-response {
+> 32 |    expect(res.body.errors.description[0]).to.eql("can't be blank");
+  33 |  }
+  34 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/10-create-article-empty-description.bru:32:46)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/10-create-article-empty-description.bru:33:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-articles/11-create-article-empty-body (400 Bad Request) - 8 ms
+[errors-articles/11-create-article-empty-body.bru] Post-response script error:
+
+File: errors-articles/11-create-article-empty-body.bru
+
+  27 |  assert {
+  28 |    res.status: eq 422
+  29 |  }
+  30 |  
+  31 |  script:post-response {
+> 32 |    expect(res.body.errors.body[0]).to.eql("can't be blank");
+  33 |  }
+  34 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/11-create-article-empty-body.bru:32:39)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/11-create-article-empty-body.bru:33:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-articles/12-duplicate-titles-are-allowed-each-gets-a-unique-slug (201 Created) - 12 ms
+Assertions
+   ✓ res.status: eq 201
+errors-articles/13-post-articles (201 Created) - 14 ms
+Assertions
+   ✓ res.status: eq 201
+errors-articles/14-update-unknown-slug (404 Not Found) - 7 ms
+[errors-articles/14-update-unknown-slug.bru] Post-response script error:
+
+File: errors-articles/14-update-unknown-slug.bru
+
+  25 |  assert {
+  26 |    res.status: eq 404
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.errors.article[0]).to.eql("not found");
+  31 |  }
+  32 |  
+
+AssertionError: expected 'A' to deeply equal 'not found'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/14-update-unknown-slug.bru:30:42)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/14-update-unknown-slug.bru:31:3)
+    Host: AssertionError: expected 'A' to deeply equal 'not found'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'A' to deeply equal 'not found'
+Assertions
+   ✓ res.status: eq 404
+errors-articles/15-favorite-unknown-slug (404 Not Found) - 5 ms
+[errors-articles/15-favorite-unknown-slug.bru] Post-response script error:
+
+File: errors-articles/15-favorite-unknown-slug.bru
+
+  17 |  assert {
+  18 |    res.status: eq 404
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.article[0]).to.eql("not found");
+  23 |  }
+  24 |  
+
+TypeError: cannot read property of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/15-favorite-unknown-slug.bru:22:31)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/15-favorite-unknown-slug.bru:23:3)
+    Host: TypeError: cannot read property of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property of undefined
+Assertions
+   ✓ res.status: eq 404
+errors-articles/16-unfavorite-unknown-slug (404 Not Found) - 7 ms
+[errors-articles/16-unfavorite-unknown-slug.bru] Post-response script error:
+
+File: errors-articles/16-unfavorite-unknown-slug.bru
+
+  17 |  assert {
+  18 |    res.status: eq 404
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.article[0]).to.eql("not found");
+  23 |  }
+  24 |  
+
+TypeError: cannot read property of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/16-unfavorite-unknown-slug.bru:22:31)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/16-unfavorite-unknown-slug.bru:23:3)
+    Host: TypeError: cannot read property of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property of undefined
+Assertions
+   ✓ res.status: eq 404
+errors-articles/17-update-unknown-slug (404 Not Found) - 6 ms
+[errors-articles/17-update-unknown-slug.bru] Post-response script error:
+
+File: errors-articles/17-update-unknown-slug.bru
+
+  25 |  assert {
+  26 |    res.status: eq 404
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.errors.article[0]).to.eql("not found");
+  31 |  }
+  32 |  
+
+AssertionError: expected 'A' to deeply equal 'not found'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/17-update-unknown-slug.bru:30:42)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/17-update-unknown-slug.bru:31:3)
+    Host: AssertionError: expected 'A' to deeply equal 'not found'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'A' to deeply equal 'not found'
+Assertions
+   ✓ res.status: eq 404
+errors-articles/18-delete-unknown-slug (405 Method Not Allowed) - 6 ms
+[errors-articles/18-delete-unknown-slug.bru] Post-response script error:
+
+File: errors-articles/18-delete-unknown-slug.bru
+
+  17 |  assert {
+  18 |    res.status: eq 404
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.article[0]).to.eql("not found");
+  23 |  }
+  24 |  
+
+TypeError: cannot read property 'article' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/18-delete-unknown-slug.bru:22:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-articles/18-delete-unknown-slug.bru:23:3)
+    Host: TypeError: cannot read property 'article' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'article' of undefined
+Assertions
+   ✕ res.status: eq 404
+      expected 405 to equal 404
+errors-articles/19-cleanup (405 Method Not Allowed) - 4 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+errors-articles/20-delete-slug2 (405 Method Not Allowed) - 5 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+
+📊 Execution Summary
+┌───────────────┬──────────────────────────┐
+│ Metric        │          Result          │
+├───────────────┼──────────────────────────┤
+│ Status        │          ✗ FAIL          │
+├───────────────┼──────────────────────────┤
+│ Requests      │ 20 (3 Passed, 17 Failed) │
+├───────────────┼──────────────────────────┤
+│ Tests         │           0/0            │
+├───────────────┼──────────────────────────┤
+│ Assertions    │           8/20           │
+├───────────────┼──────────────────────────┤
+│ Duration (ms) │           4959           │
+└───────────────┴──────────────────────────┘

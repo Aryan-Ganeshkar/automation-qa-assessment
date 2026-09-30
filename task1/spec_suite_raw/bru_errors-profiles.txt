@@ -1,0 +1,170 @@
+errors-profiles/01-get-unknown-profile (404 Not Found) - 18 ms
+[errors-profiles/01-get-unknown-profile.bru] Post-response script error:
+
+File: errors-profiles/01-get-unknown-profile.bru
+
+  13 |  assert {
+  14 |    res.status: eq 404
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.profile[0]).to.eql("not found");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'profile' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/01-get-unknown-profile.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/01-get-unknown-profile.bru:19:3)
+    Host: TypeError: cannot read property 'profile' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'profile' of undefined
+Assertions
+   ✓ res.status: eq 404
+errors-profiles/02-follow-no-auth (404 Not Found) - 6 ms
+[errors-profiles/02-follow-no-auth.bru] Post-response script error:
+
+File: errors-profiles/02-follow-no-auth.bru
+
+  13 |  assert {
+  14 |    res.status: eq 401
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/02-follow-no-auth.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/02-follow-no-auth.bru:19:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 404 to equal 401
+errors-profiles/03-unfollow-no-auth (404 Not Found) - 6 ms
+[errors-profiles/03-unfollow-no-auth.bru] Post-response script error:
+
+File: errors-profiles/03-unfollow-no-auth.bru
+
+  13 |  assert {
+  14 |    res.status: eq 401
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/03-unfollow-no-auth.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/03-unfollow-no-auth.bru:19:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 404 to equal 401
+errors-profiles/04-setup-register-for-authenticated-404-tests (201 Created) - 35 ms
+Assertions
+   ✓ res.status: eq 201
+errors-profiles/05-follow-unknown-user-authed (404 Not Found) - 6 ms
+[errors-profiles/05-follow-unknown-user-authed.bru] Post-response script error:
+
+File: errors-profiles/05-follow-unknown-user-authed.bru
+
+  17 |  assert {
+  18 |    res.status: eq 404
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.profile[0]).to.eql("not found");
+  23 |  }
+  24 |  
+
+TypeError: cannot read property 'profile' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/05-follow-unknown-user-authed.bru:22:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/05-follow-unknown-user-authed.bru:23:3)
+    Host: TypeError: cannot read property 'profile' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'profile' of undefined
+Assertions
+   ✓ res.status: eq 404
+errors-profiles/06-unfollow-unknown-user-authed (404 Not Found) - 6 ms
+[errors-profiles/06-unfollow-unknown-user-authed.bru] Post-response script error:
+
+File: errors-profiles/06-unfollow-unknown-user-authed.bru
+
+  17 |  assert {
+  18 |    res.status: eq 404
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.profile[0]).to.eql("not found");
+  23 |  }
+  24 |  
+
+TypeError: cannot read property 'profile' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/06-unfollow-unknown-user-authed.bru:22:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-profiles/06-unfollow-unknown-user-authed.bru:23:3)
+    Host: TypeError: cannot read property 'profile' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'profile' of undefined
+Assertions
+   ✓ res.status: eq 404
+
+📊 Execution Summary
+┌───────────────┬────────────────────────┐
+│ Metric        │         Result         │
+├───────────────┼────────────────────────┤
+│ Status        │         ✗ FAIL         │
+├───────────────┼────────────────────────┤
+│ Requests      │ 6 (1 Passed, 5 Failed) │
+├───────────────┼────────────────────────┤
+│ Tests         │          0/0           │
+├───────────────┼────────────────────────┤
+│ Assertions    │          4/6           │
+├───────────────┼────────────────────────┤
+│ Duration (ms) │          1877          │
+└───────────────┴────────────────────────┘

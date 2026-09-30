@@ -1,0 +1,38 @@
+pagination/01-setup-register (201 Created) - 48 ms
+Assertions
+   ✓ res.status: eq 201
+pagination/02-create-article-1 (201 Created) - 13 ms
+Assertions
+   ✓ res.status: eq 201
+pagination/03-create-article-2 (201 Created) - 20 ms
+Assertions
+   ✓ res.status: eq 201
+pagination/04-list-with-limit-1-most-recent-first-so-slug2 (200 OK) - 9 ms
+Assertions
+   ✓ res.status: eq 200
+pagination/05-list-with-limit-1-offset-1-second-page-so-slug1 (200 OK) - 9 ms
+Assertions
+   ✓ res.status: eq 200
+pagination/06-cleanup (405 Method Not Allowed) - 6 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+pagination/07-delete-slug2 (405 Method Not Allowed) - 5 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+
+📊 Execution Summary
+┌───────────────┬────────────────────────┐
+│ Metric        │         Result         │
+├───────────────┼────────────────────────┤
+│ Status        │         ✗ FAIL         │
+├───────────────┼────────────────────────┤
+│ Requests      │ 7 (5 Passed, 2 Failed) │
+├───────────────┼────────────────────────┤
+│ Tests         │          0/0           │
+├───────────────┼────────────────────────┤
+│ Assertions    │          5/7           │
+├───────────────┼────────────────────────┤
+│ Duration (ms) │          1964          │
+└───────────────┴────────────────────────┘

@@ -1,0 +1,114 @@
+favorites/01-setup-register (201 Created) - 44 ms
+Assertions
+   ✓ res.status: eq 201
+favorites/02-setup-create-article (201 Created) - 12 ms
+Assertions
+   ✓ res.status: eq 201
+favorites/03-favorite-article (201 Created) - 19 ms
+Assertions
+   ✕ res.status: eq 200
+      expected 201 to equal 200
+favorites/04-verify-favorite-persists (200 OK) - 16 ms
+Assertions
+   ✓ res.status: eq 200
+favorites/05-articles-filtered-by-favorited-username (200 OK) - 8 ms
+[favorites/05-articles-filtered-by-favorited-username.bru] Post-response script error:
+
+File: favorites/05-articles-filtered-by-favorited-username.bru
+
+  19 |    expect(Number.isInteger(res.body.articlesCount)).to.eql(true);
+  20 |    expect(res.body.articlesCount).to.be.at.least(1);
+  21 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  22 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+  23 |    expect(typeof res.body.articles[0].description).to.eql("string");
+> 24 |    expect(res.body.articles[0]).to.not.have.property("body");
+  25 |    expect(Array.isArray(res.body.articles[0].tagList)).to.eql(true);
+  26 |    expect(res.body.articles[0].createdAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  27 |    expect(res.body.articles[0].updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  28 |    expect(typeof res.body.articles[0].favorited).to.eql("boolean");
+  29 |    expect(Number.isInteger(res.body.articles[0].favoritesCount)).to.eql(true);
+
+AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at v (eval.js:410:7349)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/favorites/05-articles-filtered-by-favorited-username.bru:24:50)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/favorites/05-articles-filtered-by-favorited-username.bru:31:3)
+    Host: AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected { author: { …(4) }, …(9) } to not have property 'body'
+Assertions
+   ✓ res.status: eq 200
+favorites/06-articles-filtered-by-favorited-username-with-auth (200 OK) - 12 ms
+[favorites/06-articles-filtered-by-favorited-username-with-auth.bru] Post-response script error:
+
+File: favorites/06-articles-filtered-by-favorited-username-with-auth.bru
+
+  23 |    expect(Number.isInteger(res.body.articlesCount)).to.eql(true);
+  24 |    expect(res.body.articlesCount).to.be.at.least(1);
+  25 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  26 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+  27 |    expect(typeof res.body.articles[0].description).to.eql("string");
+> 28 |    expect(res.body.articles[0]).to.not.have.property("body");
+  29 |    expect(Array.isArray(res.body.articles[0].tagList)).to.eql(true);
+  30 |    expect(res.body.articles[0].createdAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  31 |    expect(res.body.articles[0].updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  32 |    expect(typeof res.body.articles[0].favorited).to.eql("boolean");
+  33 |    expect(Number.isInteger(res.body.articles[0].favoritesCount)).to.eql(true);
+
+AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at v (eval.js:410:7349)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/favorites/06-articles-filtered-by-favorited-username-with-auth.bru:28:50)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/favorites/06-articles-filtered-by-favorited-username-with-auth.bru:35:3)
+    Host: AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected { author: { …(4) }, …(9) } to not have property 'body'
+Assertions
+   ✓ res.status: eq 200
+favorites/07-unfavorite-article (200 OK) - 13 ms
+Assertions
+   ✓ res.status: eq 200
+favorites/08-verify-unfavorite-persists (200 OK) - 10 ms
+Assertions
+   ✓ res.status: eq 200
+favorites/09-cleanup (405 Method Not Allowed) - 7 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+
+📊 Execution Summary
+┌───────────────┬────────────────────────┐
+│ Metric        │         Result         │
+├───────────────┼────────────────────────┤
+│ Status        │         ✗ FAIL         │
+├───────────────┼────────────────────────┤
+│ Requests      │ 9 (5 Passed, 4 Failed) │
+├───────────────┼────────────────────────┤
+│ Tests         │          0/0           │
+├───────────────┼────────────────────────┤
+│ Assertions    │          7/9           │
+├───────────────┼────────────────────────┤
+│ Duration (ms) │          2532          │
+└───────────────┴────────────────────────┘

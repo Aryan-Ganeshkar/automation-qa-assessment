@@ -1,0 +1,249 @@
+errors-comments/01-post-comment-no-auth (403 Forbidden) - 17 ms
+[errors-comments/01-post-comment-no-auth.bru] Post-response script error:
+
+File: errors-comments/01-post-comment-no-auth.bru
+
+  21 |  assert {
+  22 |    res.status: eq 401
+  23 |  }
+  24 |  
+  25 |  script:post-response {
+> 26 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  27 |  }
+  28 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/01-post-comment-no-auth.bru:26:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/01-post-comment-no-auth.bru:27:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-comments/02-delete-comment-no-auth (403 Forbidden) - 4 ms
+[errors-comments/02-delete-comment-no-auth.bru] Post-response script error:
+
+File: errors-comments/02-delete-comment-no-auth.bru
+
+  13 |  assert {
+  14 |    res.status: eq 401
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.token[0]).to.eql("is missing");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'token' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/02-delete-comment-no-auth.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/02-delete-comment-no-auth.bru:19:3)
+    Host: TypeError: cannot read property 'token' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'token' of undefined
+Assertions
+   ✕ res.status: eq 401
+      expected 403 to equal 401
+errors-comments/03-setup-register-create-article (201 Created) - 31 ms
+Assertions
+   ✓ res.status: eq 201
+errors-comments/04-post-articles (201 Created) - 13 ms
+Assertions
+   ✓ res.status: eq 201
+errors-comments/05-post-comment-empty-body (400 Bad Request) - 8 ms
+[errors-comments/05-post-comment-empty-body.bru] Post-response script error:
+
+File: errors-comments/05-post-comment-empty-body.bru
+
+  25 |  assert {
+  26 |    res.status: eq 422
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.errors.body[0]).to.eql("can't be blank");
+  31 |  }
+  32 |  
+
+AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/05-post-comment-empty-body.bru:30:39)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/05-post-comment-empty-body.bru:31:3)
+    Host: AssertionError: expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'This field may not be blank.' to deeply equal 'can\'t be blank'
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+errors-comments/06-post-comment-on-unknown-article (404 Not Found) - 8 ms
+[errors-comments/06-post-comment-on-unknown-article.bru] Post-response script error:
+
+File: errors-comments/06-post-comment-on-unknown-article.bru
+
+  25 |  assert {
+  26 |    res.status: eq 404
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.errors.article[0]).to.eql("not found");
+  31 |  }
+  32 |  
+
+TypeError: cannot read property of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/06-post-comment-on-unknown-article.bru:30:31)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/06-post-comment-on-unknown-article.bru:31:3)
+    Host: TypeError: cannot read property of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property of undefined
+Assertions
+   ✓ res.status: eq 404
+errors-comments/07-get-comments-on-unknown-article (200 OK) - 9 ms
+[errors-comments/07-get-comments-on-unknown-article.bru] Post-response script error:
+
+File: errors-comments/07-get-comments-on-unknown-article.bru
+
+  13 |  assert {
+  14 |    res.status: eq 404
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.article[0]).to.eql("not found");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'article' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/07-get-comments-on-unknown-article.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/07-get-comments-on-unknown-article.bru:19:3)
+    Host: TypeError: cannot read property 'article' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'article' of undefined
+Assertions
+   ✕ res.status: eq 404
+      expected 200 to equal 404
+errors-comments/08-delete-comment-on-unknown-article (404 Not Found) - 9 ms
+[errors-comments/08-delete-comment-on-unknown-article.bru] Post-response script error:
+
+File: errors-comments/08-delete-comment-on-unknown-article.bru
+
+  17 |  assert {
+  18 |    res.status: eq 404
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.article[0]).to.eql("not found");
+  23 |  }
+  24 |  
+
+TypeError: cannot read property of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/08-delete-comment-on-unknown-article.bru:22:31)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/08-delete-comment-on-unknown-article.bru:23:3)
+    Host: TypeError: cannot read property of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property of undefined
+Assertions
+   ✓ res.status: eq 404
+errors-comments/09-delete-non-existent-comment-on-existing-article (404 Not Found) - 8 ms
+[errors-comments/09-delete-non-existent-comment-on-existing-article.bru] Post-response script error:
+
+File: errors-comments/09-delete-non-existent-comment-on-existing-article.bru
+
+  17 |  assert {
+  18 |    res.status: eq 404
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.errors.comment[0]).to.eql("not found");
+  23 |  }
+  24 |  
+
+AssertionError: expected 'A' to deeply equal 'not found'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/09-delete-non-existent-comment-on-existing-article.bru:22:42)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/errors-comments/09-delete-non-existent-comment-on-existing-article.bru:23:3)
+    Host: AssertionError: expected 'A' to deeply equal 'not found'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'A' to deeply equal 'not found'
+Assertions
+   ✓ res.status: eq 404
+errors-comments/10-cleanup (405 Method Not Allowed) - 6 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+
+📊 Execution Summary
+┌───────────────┬─────────────────────────┐
+│ Metric        │         Result          │
+├───────────────┼─────────────────────────┤
+│ Status        │         ✗ FAIL          │
+├───────────────┼─────────────────────────┤
+│ Requests      │ 10 (2 Passed, 8 Failed) │
+├───────────────┼─────────────────────────┤
+│ Tests         │           0/0           │
+├───────────────┼─────────────────────────┤
+│ Assertions    │          5/10           │
+├───────────────┼─────────────────────────┤
+│ Duration (ms) │          2756           │
+└───────────────┴─────────────────────────┘

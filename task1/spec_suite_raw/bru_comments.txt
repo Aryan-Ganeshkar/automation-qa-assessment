@@ -1,0 +1,55 @@
+comments/01-setup-register (201 Created) - 64 ms
+Assertions
+   ✓ res.status: eq 201
+comments/02-setup-create-article (201 Created) - 12 ms
+Assertions
+   ✓ res.status: eq 201
+comments/03-create-comment (201 Created) - 9 ms
+Assertions
+   ✓ res.status: eq 201
+comments/04-list-comments (200 OK) - 9 ms
+Assertions
+   ✓ res.status: eq 200
+comments/05-list-comments-without-auth (200 OK) - 7 ms
+Assertions
+   ✓ res.status: eq 200
+comments/06-delete-comment (204 No Content) - 8 ms
+Assertions
+   ✓ res.status: eq 204
+comments/07-verify-deletion (200 OK) - 5 ms
+Assertions
+   ✓ res.status: eq 200
+comments/08-selective-deletion-create-two-comments-delete-one-verify-the-other-remains (201 Created) - 9 ms
+Assertions
+   ✓ res.status: eq 201
+comments/09-post-comments (201 Created) - 10 ms
+Assertions
+   ✓ res.status: eq 201
+comments/10-verify-two-comments-exist (200 OK) - 13 ms
+Assertions
+   ✓ res.status: eq 200
+comments/11-delete-the-first-comment (204 No Content) - 7 ms
+Assertions
+   ✓ res.status: eq 204
+comments/12-verify-only-the-second-comment-remains (200 OK) - 7 ms
+Assertions
+   ✓ res.status: eq 200
+comments/13-cleanup (405 Method Not Allowed) - 8 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+
+📊 Execution Summary
+┌───────────────┬──────────────────────────┐
+│ Metric        │          Result          │
+├───────────────┼──────────────────────────┤
+│ Status        │          ✗ FAIL          │
+├───────────────┼──────────────────────────┤
+│ Requests      │ 13 (12 Passed, 1 Failed) │
+├───────────────┼──────────────────────────┤
+│ Tests         │           0/0            │
+├───────────────┼──────────────────────────┤
+│ Assertions    │          12/13           │
+├───────────────┼──────────────────────────┤
+│ Duration (ms) │           3200           │
+└───────────────┴──────────────────────────┘

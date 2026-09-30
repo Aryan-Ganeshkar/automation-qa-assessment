@@ -1,0 +1,328 @@
+{
+  "name": "Bonus - Uptime Monitor",
+  "nodes": [
+    {
+      "id": "b-1",
+      "name": "Every 5 minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        200
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "b-2",
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        200
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "targetUrl",
+              "value": "http://localhost:8000/api/tags",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "b-3",
+      "name": "Mark start",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        200
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "return [{ json: { start: Date.now() } }];"
+      }
+    },
+    {
+      "id": "b-4",
+      "name": "Ping app",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        660,
+        200
+      ],
+      "parameters": {
+        "url": "={{ $('Config').first().json.targetUrl }}",
+        "options": {
+          "timeout": 8000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "onError": "continueRegularOutput",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "id": "b-5",
+      "name": "Evaluate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        200
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const start = $('Mark start').first().json.start;\nconst ms = Date.now() - start;\nconst r = $input.first().json;\nconst status = (r.statusCode !== undefined) ? r.statusCode : 0;   // 0 = no response at all (connection error)\nconst ok = status === 200;\nconst s = $getWorkflowStaticData('global');\ns.checks = (s.checks || 0) + 1;\ns.failures = (s.failures || 0) + (ok ? 0 : 1);\ns.totalMs = (s.totalMs || 0) + ms;\ns.slowest = Math.max(s.slowest || 0, ms);\nreturn [{ json: { ok, status, ms, url: $('Config').first().json.targetUrl,\n                  error: r.error ? (r.error.message || String(r.error)) : null } }];"
+      }
+    },
+    {
+      "id": "b-6",
+      "name": "IF status == 200",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        200
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.ok }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      }
+    },
+    {
+      "id": "b-7",
+      "name": "Discord: DOWN alert",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        300
+      ],
+      "parameters": {
+        "authentication": "webhook",
+        "resource": "message",
+        "operation": "sendLegacy",
+        "content": "=:rotating_light: App check FAILED. URL: {{ $json.url }} | status: {{ $json.status }} | time: {{ $json.ms }} ms | error: {{ $json.error || 'none' }}"
+      },
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "REPLACE_ME",
+          "name": "Discord Webhook account"
+        }
+      }
+    },
+    {
+      "id": "b-8",
+      "name": "OK - no alert (NoOp)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        120
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "b-9",
+      "name": "Daily 09:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        520
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "daysInterval": 1,
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "b-10",
+      "name": "Build daily summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        520
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const s = $getWorkflowStaticData('global');\nconst checks = s.checks || 0;\nconst avg = checks ? Math.round(s.totalMs / checks) : 0;\nconst msg = `**Daily uptime summary**\\nChecks: ${checks}, failures: ${s.failures || 0}, avg response: ${avg} ms, slowest: ${s.slowest || 0} ms`;\ns.checks = 0; s.failures = 0; s.totalMs = 0; s.slowest = 0;   // reset for next day\nreturn [{ json: { content: msg } }];"
+      }
+    },
+    {
+      "id": "b-11",
+      "name": "Discord: daily summary",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        700,
+        520
+      ],
+      "parameters": {
+        "authentication": "webhook",
+        "resource": "message",
+        "operation": "sendLegacy",
+        "content": "={{ $json.content }}"
+      },
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "REPLACE_ME",
+          "name": "Discord Webhook account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Every 5 minutes": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Mark start",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark start": {
+      "main": [
+        [
+          {
+            "node": "Ping app",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ping app": {
+      "main": [
+        [
+          {
+            "node": "Evaluate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluate": {
+      "main": [
+        [
+          {
+            "node": "IF status == 200",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF status == 200": {
+      "main": [
+        [
+          {
+            "node": "OK - no alert (NoOp)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Discord: DOWN alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily 09:00": {
+      "main": [
+        [
+          {
+            "node": "Build daily summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build daily summary": {
+      "main": [
+        [
+          {
+            "node": "Discord: daily summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "tags": []
+}

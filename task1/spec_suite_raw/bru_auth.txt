@@ -1,0 +1,728 @@
+auth/01-register (201 Created) - 43 ms
+[auth/01-register.bru] Post-response script error:
+
+File: auth/01-register.bru
+
+  26 |  
+  27 |  script:post-response {
+  28 |    bru.setVar("reg_token", res.body.user.token);
+  29 |    expect(res.body.user.username).to.eql("auth_" + bru.getVar("uid"));
+  30 |    expect(res.body.user.email).to.eql("auth_" + bru.getVar("uid") + "@test.com");
+> 31 |    expect(res.body.user.bio).to.be.null;
+  32 |    expect(res.body.user.image).to.be.null;
+  33 |    expect(typeof res.body.user.token).to.eql("string");
+  34 |    expect(res.body.user.token).to.not.eql("");
+  35 |  }
+  36 |  
+
+AssertionError: expected undefined to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/01-register.bru:31:32)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/01-register.bru:35:3)
+    Host: AssertionError: expected undefined to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected undefined to be null
+Assertions
+   ✓ res.status: eq 201
+auth/02-login (200 OK) - 28 ms
+[auth/02-login.bru] Post-response script error:
+
+File: auth/02-login.bru
+
+  25 |  
+  26 |  script:post-response {
+  27 |    bru.setVar("token", res.body.user.token);
+  28 |    expect(res.body.user.username).to.eql("auth_" + bru.getVar("uid"));
+  29 |    expect(res.body.user.email).to.eql("auth_" + bru.getVar("uid") + "@test.com");
+> 30 |    expect(res.body.user.bio).to.be.null;
+  31 |    expect(res.body.user.image).to.be.null;
+  32 |    expect(typeof res.body.user.token).to.eql("string");
+  33 |    expect(res.body.user.token).to.not.eql("");
+  34 |  }
+  35 |  
+
+AssertionError: expected undefined to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/02-login.bru:30:32)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/02-login.bru:34:3)
+    Host: AssertionError: expected undefined to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected undefined to be null
+Assertions
+   ✓ res.status: eq 200
+auth/03-get-current-user (200 OK) - 7 ms
+[auth/03-get-current-user.bru] Post-response script error:
+
+File: auth/03-get-current-user.bru
+
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+  22 |    expect(res.body.user.username).to.eql("auth_" + bru.getVar("uid"));
+  23 |    expect(res.body.user.email).to.eql("auth_" + bru.getVar("uid") + "@test.com");
+> 24 |    expect(res.body.user.bio).to.be.null;
+  25 |    expect(res.body.user.image).to.be.null;
+  26 |    expect(typeof res.body.user.token).to.eql("string");
+  27 |    expect(res.body.user.token).to.not.eql("");
+  28 |  }
+  29 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/03-get-current-user.bru:24:32)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/03-get-current-user.bru:28:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/04-update-user (200 OK) - 12 ms
+[auth/04-update-user.bru] Post-response script error:
+
+File: auth/04-update-user.bru
+
+  28 |  
+  29 |  script:post-response {
+  30 |    expect(res.body.user.username).to.eql("auth_" + bru.getVar("uid"));
+  31 |    expect(res.body.user.email).to.eql("auth_" + bru.getVar("uid") + "@test.com");
+  32 |    expect(res.body.user.bio).to.eql("Updated bio");
+> 33 |    expect(res.body.user.image).to.be.null;
+  34 |    expect(typeof res.body.user.token).to.eql("string");
+  35 |    expect(res.body.user.token).to.not.eql("");
+  36 |  }
+  37 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/04-update-user.bru:33:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/04-update-user.bru:36:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/05-verify-update-persisted (200 OK) - 7 ms
+[auth/05-verify-update-persisted.bru] Post-response script error:
+
+File: auth/05-verify-update-persisted.bru
+
+  20 |  
+  21 |  script:post-response {
+  22 |    expect(res.body.user.username).to.eql("auth_" + bru.getVar("uid"));
+  23 |    expect(res.body.user.email).to.eql("auth_" + bru.getVar("uid") + "@test.com");
+  24 |    expect(res.body.user.bio).to.eql("Updated bio");
+> 25 |    expect(res.body.user.image).to.be.null;
+  26 |    expect(typeof res.body.user.token).to.eql("string");
+  27 |    expect(res.body.user.token).to.not.eql("");
+  28 |  }
+  29 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/05-verify-update-persisted.bru:25:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/05-verify-update-persisted.bru:28:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/06-update-user-bio-to-empty-string-should-normalize-to-null (200 OK) - 12 ms
+[auth/06-update-user-bio-to-empty-string-should-normalize-to-null.bru] Post-response script error:
+
+File: auth/06-update-user-bio-to-empty-string-should-normalize-to-null.bru
+
+  25 |  assert {
+  26 |    res.status: eq 200
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.user.bio).to.be.null;
+  31 |  }
+  32 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/06-update-user-bio-to-empty-string-should-normalize-to-null.bru:30:32)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/06-update-user-bio-to-empty-string-should-normalize-to-null.bru:31:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/07-verify-empty-string-normalization-persisted (200 OK) - 6 ms
+[auth/07-verify-empty-string-normalization-persisted.bru] Post-response script error:
+
+File: auth/07-verify-empty-string-normalization-persisted.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.user.bio).to.be.null;
+  23 |  }
+  24 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/07-verify-empty-string-normalization-persisted.bru:22:32)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/07-verify-empty-string-normalization-persisted.bru:23:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/08-restore-bio-then-set-to-null (200 OK) - 12 ms
+Assertions
+   ✓ res.status: eq 200
+auth/09-update-user-bio-to-null-should-accept-for-nullable-field (400 Bad Request) - 11 ms
+[auth/09-update-user-bio-to-null-should-accept-for-nullable-field.bru] Post-response script error:
+
+File: auth/09-update-user-bio-to-null-should-accept-for-nullable-field.bru
+
+  25 |  assert {
+  26 |    res.status: eq 200
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.user.bio).to.be.null;
+  31 |  }
+  32 |  
+
+TypeError: cannot read property 'bio' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/09-update-user-bio-to-null-should-accept-for-nullable-field.bru:30:21)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/09-update-user-bio-to-null-should-accept-for-nullable-field.bru:31:3)
+    Host: TypeError: cannot read property 'bio' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'bio' of undefined
+Assertions
+   ✕ res.status: eq 200
+      expected 400 to equal 200
+auth/10-verify-null-bio-persisted (200 OK) - 7 ms
+[auth/10-verify-null-bio-persisted.bru] Post-response script error:
+
+File: auth/10-verify-null-bio-persisted.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.user.bio).to.be.null;
+  23 |  }
+  24 |  
+
+AssertionError: expected 'Temporary bio' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/10-verify-null-bio-persisted.bru:22:32)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/10-verify-null-bio-persisted.bru:23:3)
+    Host: AssertionError: expected 'Temporary bio' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 'Temporary bio' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/11-restore-bio (200 OK) - 13 ms
+[auth/11-restore-bio.bru] Post-response script error:
+
+File: auth/11-restore-bio.bru
+
+  28 |  
+  29 |  script:post-response {
+  30 |    expect(res.body.user.username).to.eql("auth_" + bru.getVar("uid"));
+  31 |    expect(res.body.user.email).to.eql("auth_" + bru.getVar("uid") + "@test.com");
+  32 |    expect(res.body.user.bio).to.eql("Updated bio");
+> 33 |    expect(res.body.user.image).to.be.null;
+  34 |    expect(typeof res.body.user.token).to.eql("string");
+  35 |    expect(res.body.user.token).to.not.eql("");
+  36 |  }
+  37 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/11-restore-bio.bru:33:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/11-restore-bio.bru:36:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/12-update-user-image (200 OK) - 11 ms
+[auth/12-update-user-image.bru] Post-response script error:
+
+File: auth/12-update-user-image.bru
+
+  25 |  assert {
+  26 |    res.status: eq 200
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.user.image).to.eql("https://example.com/photo.jpg");
+  31 |  }
+  32 |  
+
+AssertionError: expected '' to deeply equal 'https://example.com/photo.jpg'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/12-update-user-image.bru:30:35)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/12-update-user-image.bru:31:3)
+    Host: AssertionError: expected '' to deeply equal 'https://example.com/photo.jpg'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to deeply equal 'https://example.com/photo.jpg'
+Assertions
+   ✓ res.status: eq 200
+auth/13-verify-image-update-persisted (200 OK) - 9 ms
+[auth/13-verify-image-update-persisted.bru] Post-response script error:
+
+File: auth/13-verify-image-update-persisted.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.user.image).to.eql("https://example.com/photo.jpg");
+  23 |  }
+  24 |  
+
+AssertionError: expected '' to deeply equal 'https://example.com/photo.jpg'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/13-verify-image-update-persisted.bru:22:35)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/13-verify-image-update-persisted.bru:23:3)
+    Host: AssertionError: expected '' to deeply equal 'https://example.com/photo.jpg'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to deeply equal 'https://example.com/photo.jpg'
+Assertions
+   ✓ res.status: eq 200
+auth/14-update-image-to-empty-string-should-normalize-to-null (200 OK) - 12 ms
+[auth/14-update-image-to-empty-string-should-normalize-to-null.bru] Post-response script error:
+
+File: auth/14-update-image-to-empty-string-should-normalize-to-null.bru
+
+  25 |  assert {
+  26 |    res.status: eq 200
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.user.image).to.be.null;
+  31 |  }
+  32 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/14-update-image-to-empty-string-should-normalize-to-null.bru:30:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/14-update-image-to-empty-string-should-normalize-to-null.bru:31:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/15-verify-image-empty-string-normalization-persisted (200 OK) - 7 ms
+[auth/15-verify-image-empty-string-normalization-persisted.bru] Post-response script error:
+
+File: auth/15-verify-image-empty-string-normalization-persisted.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.user.image).to.be.null;
+  23 |  }
+  24 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/15-verify-image-empty-string-normalization-persisted.bru:22:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/15-verify-image-empty-string-normalization-persisted.bru:23:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/16-set-image-then-update-to-null-should-accept-for-nullable-field (200 OK) - 10 ms
+[auth/16-set-image-then-update-to-null-should-accept-for-nullable-field.bru] Post-response script error:
+
+File: auth/16-set-image-then-update-to-null-should-accept-for-nullable-field.bru
+
+  25 |  assert {
+  26 |    res.status: eq 200
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.user.image).to.eql("https://example.com/temp.jpg");
+  31 |  }
+  32 |  
+
+AssertionError: expected '' to deeply equal 'https://example.com/temp.jpg'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/16-set-image-then-update-to-null-should-accept-for-nullable-field.bru:30:35)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/16-set-image-then-update-to-null-should-accept-for-nullable-field.bru:31:3)
+    Host: AssertionError: expected '' to deeply equal 'https://example.com/temp.jpg'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to deeply equal 'https://example.com/temp.jpg'
+Assertions
+   ✓ res.status: eq 200
+auth/17-put-user (200 OK) - 10 ms
+[auth/17-put-user.bru] Post-response script error:
+
+File: auth/17-put-user.bru
+
+  25 |  assert {
+  26 |    res.status: eq 200
+  27 |  }
+  28 |  
+  29 |  script:post-response {
+> 30 |    expect(res.body.user.image).to.be.null;
+  31 |  }
+  32 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/17-put-user.bru:30:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/17-put-user.bru:31:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/18-verify-null-image-persisted (200 OK) - 6 ms
+[auth/18-verify-null-image-persisted.bru] Post-response script error:
+
+File: auth/18-verify-null-image-persisted.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.user.image).to.be.null;
+  23 |  }
+  24 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/18-verify-null-image-persisted.bru:22:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/18-verify-null-image-persisted.bru:23:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/19-update-username-and-email (200 OK) - 10 ms
+[auth/19-update-username-and-email.bru] Post-response script error:
+
+File: auth/19-update-username-and-email.bru
+
+  30 |  script:post-response {
+  31 |    bru.setVar("updated_token", res.body.user.token);
+  32 |    expect(res.body.user.username).to.eql("auth_" + bru.getVar("uid") + "_upd");
+  33 |    expect(res.body.user.email).to.eql("auth_" + bru.getVar("uid") + "_upd@test.com");
+  34 |    expect(res.body.user.bio).to.eql("Updated bio");
+> 35 |    expect(res.body.user.image).to.be.null;
+  36 |    expect(typeof res.body.user.token).to.eql("string");
+  37 |    expect(res.body.user.token).to.not.eql("");
+  38 |  }
+  39 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/19-update-username-and-email.bru:35:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/19-update-username-and-email.bru:38:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+auth/20-verify-username-email-update-persisted (200 OK) - 6 ms
+[auth/20-verify-username-email-update-persisted.bru] Post-response script error:
+
+File: auth/20-verify-username-email-update-persisted.bru
+
+  20 |  
+  21 |  script:post-response {
+  22 |    expect(res.body.user.username).to.eql("auth_" + bru.getVar("uid") + "_upd");
+  23 |    expect(res.body.user.email).to.eql("auth_" + bru.getVar("uid") + "_upd@test.com");
+  24 |    expect(res.body.user.bio).to.eql("Updated bio");
+> 25 |    expect(res.body.user.image).to.be.null;
+  26 |    expect(typeof res.body.user.token).to.eql("string");
+  27 |    expect(res.body.user.token).to.not.eql("");
+  28 |  }
+  29 |  
+
+AssertionError: expected '' to be null
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at <anonymous> (eval.js:410:15751)
+    at call (native)
+    at o (eval.js:269:224)
+    at get (native)
+    at e (eval.js:186:137)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/20-verify-username-email-update-persisted.bru:25:34)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/auth/20-verify-username-email-update-persisted.bru:28:3)
+    Host: AssertionError: expected '' to be null
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected '' to be null
+Assertions
+   ✓ res.status: eq 200
+
+📊 Execution Summary
+┌───────────────┬──────────────────────────┐
+│ Metric        │          Result          │
+├───────────────┼──────────────────────────┤
+│ Status        │          ✗ FAIL          │
+├───────────────┼──────────────────────────┤
+│ Requests      │ 20 (1 Passed, 19 Failed) │
+├───────────────┼──────────────────────────┤
+│ Tests         │           0/0            │
+├───────────────┼──────────────────────────┤
+│ Assertions    │          19/20           │
+├───────────────┼──────────────────────────┤
+│ Duration (ms) │           5267           │
+└───────────────┴──────────────────────────┘

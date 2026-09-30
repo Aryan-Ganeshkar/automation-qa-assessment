@@ -1,0 +1,184 @@
+feed/01-register-main-user (201 Created) - 54 ms
+Assertions
+   ✓ res.status: eq 201
+feed/02-register-celeb-user (201 Created) - 31 ms
+Assertions
+   ✓ res.status: eq 201
+feed/03-feed-for-new-user-returns-empty (404 Not Found) - 7 ms
+[feed/03-feed-for-new-user-returns-empty.bru] Post-response script error:
+
+File: feed/03-feed-for-new-user-returns-empty.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.articlesCount).to.eql(0);
+  23 |    expect(res.body.articles.length).to.eql(0);
+  24 |  }
+  25 |  
+
+AssertionError: expected undefined to deeply equal +0
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/feed/03-feed-for-new-user-returns-empty.bru:22:38)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/feed/03-feed-for-new-user-returns-empty.bru:24:3)
+    Host: AssertionError: expected undefined to deeply equal +0
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected undefined to deeply equal +0
+Assertions
+   ✕ res.status: eq 200
+      expected 404 to equal 200
+feed/04-main-follows-celeb (201 Created) - 11 ms
+Assertions
+   ✕ res.status: eq 200
+      expected 201 to equal 200
+feed/05-celeb-creates-article-1 (201 Created) - 12 ms
+Assertions
+   ✓ res.status: eq 201
+feed/06-celeb-creates-article-2 (201 Created) - 12 ms
+Assertions
+   ✓ res.status: eq 201
+feed/07-main-checks-feed (404 Not Found) - 6 ms
+[feed/07-main-checks-feed.bru] Post-response script error:
+
+File: feed/07-main-checks-feed.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(Array.isArray(res.body.articles)).to.eql(true);
+  23 |    expect(Number.isInteger(res.body.articlesCount)).to.eql(true);
+  24 |    expect(res.body.articlesCount).to.eql(2);
+  25 |    expect(res.body.articles.length).to.eql(2);
+  26 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  27 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+
+AssertionError: expected false to deeply equal true
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/feed/07-main-checks-feed.bru:22:48)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/feed/07-main-checks-feed.bru:36:3)
+    Host: AssertionError: expected false to deeply equal true
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected false to deeply equal true
+Assertions
+   ✕ res.status: eq 200
+      expected 404 to equal 200
+feed/08-feed-with-limit-1 (404 Not Found) - 6 ms
+[feed/08-feed-with-limit-1.bru] Post-response script error:
+
+File: feed/08-feed-with-limit-1.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.articles.length).to.eql(1);
+  23 |    expect(res.body.articlesCount).to.eql(2);
+  24 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  25 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+  26 |    expect(typeof res.body.articles[0].description).to.eql("string");
+  27 |    expect(res.body.articles[0]).to.not.have.property("body");
+
+TypeError: cannot read property 'length' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/feed/08-feed-with-limit-1.bru:22:25)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/feed/08-feed-with-limit-1.bru:35:3)
+    Host: TypeError: cannot read property 'length' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'length' of undefined
+Assertions
+   ✕ res.status: eq 200
+      expected 404 to equal 200
+feed/09-feed-with-limit-1-offset-1 (404 Not Found) - 9 ms
+[feed/09-feed-with-limit-1-offset-1.bru] Post-response script error:
+
+File: feed/09-feed-with-limit-1-offset-1.bru
+
+  17 |  assert {
+  18 |    res.status: eq 200
+  19 |  }
+  20 |  
+  21 |  script:post-response {
+> 22 |    expect(res.body.articles.length).to.eql(1);
+  23 |    expect(res.body.articlesCount).to.eql(2);
+  24 |  }
+  25 |  
+
+TypeError: cannot read property 'length' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/feed/09-feed-with-limit-1-offset-1.bru:22:25)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/feed/09-feed-with-limit-1-offset-1.bru:24:3)
+    Host: TypeError: cannot read property 'length' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'length' of undefined
+Assertions
+   ✕ res.status: eq 200
+      expected 404 to equal 200
+feed/10-cleanup-delete-articles (405 Method Not Allowed) - 5 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+feed/11-delete-slug2 (405 Method Not Allowed) - 6 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+feed/12-cleanup-unfollow (200 OK) - 10 ms
+Assertions
+   ✓ res.status: eq 200
+
+📊 Execution Summary
+┌───────────────┬─────────────────────────┐
+│ Metric        │         Result          │
+├───────────────┼─────────────────────────┤
+│ Status        │         ✗ FAIL          │
+├───────────────┼─────────────────────────┤
+│ Requests      │ 12 (5 Passed, 7 Failed) │
+├───────────────┼─────────────────────────┤
+│ Tests         │           0/0           │
+├───────────────┼─────────────────────────┤
+│ Assertions    │          5/12           │
+├───────────────┼─────────────────────────┤
+│ Duration (ms) │          3192           │
+└───────────────┴─────────────────────────┘

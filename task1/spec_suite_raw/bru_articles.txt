@@ -1,0 +1,306 @@
+articles/01-setup-register (201 Created) - 51 ms
+Assertions
+   ✓ res.status: eq 201
+articles/02-create-article-with-tags (201 Created) - 20 ms
+[articles/02-create-article-with-tags.bru] Post-response script error:
+
+File: articles/02-create-article-with-tags.bru
+
+  37 |    expect(typeof res.body.article.slug).to.eql("string");
+  38 |    expect(res.body.article.description).to.eql("Test description");
+  39 |    expect(res.body.article.body).to.eql("Test body content");
+  40 |    expect(res.body.article.tagList).to.include("d_" + bru.getVar("uid"));
+  41 |    expect(res.body.article.tagList).to.include("t_" + bru.getVar("uid"));
+> 42 |    expect(res.body.article.tagList[0]).to.eql("d_" + bru.getVar("uid"));
+  43 |    expect(res.body.article.tagList[1]).to.eql("t_" + bru.getVar("uid"));
+  44 |    expect(res.body.article.createdAt).to.match(/^\d{4}-\d{2}-\d{2}T/);
+  45 |    expect(res.body.article.updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T/);
+  46 |    expect(res.body.article.favorited).to.eql(false);
+  47 |    expect(res.body.article.favoritesCount).to.eql(0);
+
+AssertionError: expected 't_1790684889949ngd7' to deeply equal 'd_1790684889949ngd7'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at h (eval.js:410:2406)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/02-create-article-with-tags.bru:42:43)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/02-create-article-with-tags.bru:49:3)
+    Host: AssertionError: expected 't_1790684889949ngd7' to deeply equal 'd_1790684889949ngd7'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected 't_1790684889949ngd7' to deeply equal 'd_1790684889949ngd7'
+Assertions
+   ✓ res.status: eq 201
+articles/03-list-all-articles (200 OK) - 8 ms
+[articles/03-list-all-articles.bru] Post-response script error:
+
+File: articles/03-list-all-articles.bru
+
+  19 |    expect(Number.isInteger(res.body.articlesCount)).to.eql(true);
+  20 |    expect(res.body.articlesCount).to.be.at.least(1);
+  21 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  22 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+  23 |    expect(typeof res.body.articles[0].description).to.eql("string");
+> 24 |    expect(res.body.articles[0]).to.not.have.property("body");
+  25 |    expect(Array.isArray(res.body.articles[0].tagList)).to.eql(true);
+  26 |    expect(res.body.articles[0].createdAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  27 |    expect(res.body.articles[0].updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  28 |    expect(typeof res.body.articles[0].favorited).to.eql("boolean");
+  29 |    expect(Number.isInteger(res.body.articles[0].favoritesCount)).to.eql(true);
+
+AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at v (eval.js:410:7349)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/03-list-all-articles.bru:24:50)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/03-list-all-articles.bru:31:3)
+    Host: AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected { author: { …(4) }, …(9) } to not have property 'body'
+Assertions
+   ✓ res.status: eq 200
+articles/04-list-by-author (200 OK) - 9 ms
+[articles/04-list-by-author.bru] Post-response script error:
+
+File: articles/04-list-by-author.bru
+
+  19 |    expect(Number.isInteger(res.body.articlesCount)).to.eql(true);
+  20 |    expect(res.body.articlesCount).to.be.at.least(1);
+  21 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  22 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+  23 |    expect(typeof res.body.articles[0].description).to.eql("string");
+> 24 |    expect(res.body.articles[0]).to.not.have.property("body");
+  25 |    expect(Array.isArray(res.body.articles[0].tagList)).to.eql(true);
+  26 |    expect(res.body.articles[0].createdAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  27 |    expect(res.body.articles[0].updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  28 |    expect(typeof res.body.articles[0].favorited).to.eql("boolean");
+  29 |    expect(Number.isInteger(res.body.articles[0].favoritesCount)).to.eql(true);
+
+AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at v (eval.js:410:7349)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/04-list-by-author.bru:24:50)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/04-list-by-author.bru:31:3)
+    Host: AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected { author: { …(4) }, …(9) } to not have property 'body'
+Assertions
+   ✓ res.status: eq 200
+articles/05-list-all-articles-with-auth (200 OK) - 10 ms
+[articles/05-list-all-articles-with-auth.bru] Post-response script error:
+
+File: articles/05-list-all-articles-with-auth.bru
+
+  23 |    expect(Number.isInteger(res.body.articlesCount)).to.eql(true);
+  24 |    expect(res.body.articlesCount).to.be.at.least(1);
+  25 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  26 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+  27 |    expect(typeof res.body.articles[0].description).to.eql("string");
+> 28 |    expect(res.body.articles[0]).to.not.have.property("body");
+  29 |    expect(Array.isArray(res.body.articles[0].tagList)).to.eql(true);
+  30 |    expect(res.body.articles[0].createdAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  31 |    expect(res.body.articles[0].updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  32 |    expect(typeof res.body.articles[0].favorited).to.eql("boolean");
+  33 |    expect(Number.isInteger(res.body.articles[0].favoritesCount)).to.eql(true);
+
+AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at v (eval.js:410:7349)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/05-list-all-articles-with-auth.bru:28:50)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/05-list-all-articles-with-auth.bru:35:3)
+    Host: AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected { author: { …(4) }, …(9) } to not have property 'body'
+Assertions
+   ✓ res.status: eq 200
+articles/06-list-by-author-with-auth (200 OK) - 10 ms
+[articles/06-list-by-author-with-auth.bru] Post-response script error:
+
+File: articles/06-list-by-author-with-auth.bru
+
+  23 |    expect(Number.isInteger(res.body.articlesCount)).to.eql(true);
+  24 |    expect(res.body.articlesCount).to.be.at.least(1);
+  25 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  26 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+  27 |    expect(typeof res.body.articles[0].description).to.eql("string");
+> 28 |    expect(res.body.articles[0]).to.not.have.property("body");
+  29 |    expect(Array.isArray(res.body.articles[0].tagList)).to.eql(true);
+  30 |    expect(res.body.articles[0].createdAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  31 |    expect(res.body.articles[0].updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  32 |    expect(typeof res.body.articles[0].favorited).to.eql("boolean");
+  33 |    expect(Number.isInteger(res.body.articles[0].favoritesCount)).to.eql(true);
+
+AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at v (eval.js:410:7349)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/06-list-by-author-with-auth.bru:28:50)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/06-list-by-author-with-auth.bru:35:3)
+    Host: AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected { author: { …(4) }, …(9) } to not have property 'body'
+Assertions
+   ✓ res.status: eq 200
+articles/07-list-by-tag (200 OK) - 8 ms
+[articles/07-list-by-tag.bru] Post-response script error:
+
+File: articles/07-list-by-tag.bru
+
+  19 |    expect(Number.isInteger(res.body.articlesCount)).to.eql(true);
+  20 |    expect(res.body.articlesCount).to.be.at.least(1);
+  21 |    expect(typeof res.body.articles[0].title).to.eql("string");
+  22 |    expect(typeof res.body.articles[0].slug).to.eql("string");
+  23 |    expect(typeof res.body.articles[0].description).to.eql("string");
+> 24 |    expect(res.body.articles[0]).to.not.have.property("body");
+  25 |    expect(Array.isArray(res.body.articles[0].tagList)).to.eql(true);
+  26 |    expect(res.body.articles[0].tagList).to.include("d_" + bru.getVar("uid"));
+  27 |    expect(res.body.articles[0].createdAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  28 |    expect(res.body.articles[0].updatedAt).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  29 |    expect(typeof res.body.articles[0].favorited).to.eql("boolean");
+
+AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at u (eval.js:21:275)
+    at <anonymous> (eval.js:402:1491)
+    at v (eval.js:410:7349)
+    at apply (native)
+    at c (eval.js:273:168)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/07-list-by-tag.bru:24:50)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/07-list-by-tag.bru:32:3)
+    Host: AssertionError: expected { author: { …(4) }, …(9) } to not have property 'body'
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      expected { author: { …(4) }, …(9) } to not have property 'body'
+Assertions
+   ✓ res.status: eq 200
+articles/08-list-articles-without-auth (200 OK) - 7 ms
+Assertions
+   ✓ res.status: eq 200
+articles/09-get-single-article (200 OK) - 9 ms
+Assertions
+   ✓ res.status: eq 200
+articles/10-update-article-body (200 OK) - 13 ms
+Assertions
+   ✓ res.status: eq 200
+articles/11-verify-update-persisted (200 OK) - 8 ms
+Assertions
+   ✓ res.status: eq 200
+articles/12-update-article-without-taglist-tags-should-be-preserved (200 OK) - 12 ms
+Assertions
+   ✓ res.status: eq 200
+articles/13-update-article-remove-all-tags-with-empty-array (200 OK) - 15 ms
+Assertions
+   ✓ res.status: eq 200
+articles/14-verify-tags-were-actually-removed (200 OK) - 8 ms
+Assertions
+   ✓ res.status: eq 200
+articles/15-update-article-taglist-null-should-be-rejected (400 Bad Request) - 8 ms
+Assertions
+   ✕ res.status: eq 422
+      expected 400 to equal 422
+articles/16-delete-article (405 Method Not Allowed) - 6 ms
+Assertions
+   ✕ res.status: eq 204
+      expected 405 to equal 204
+articles/17-verify-deletion (200 OK) - 7 ms
+[articles/17-verify-deletion.bru] Post-response script error:
+
+File: articles/17-verify-deletion.bru
+
+  13 |  assert {
+  14 |    res.status: eq 404
+  15 |  }
+  16 |  
+  17 |  script:post-response {
+> 18 |    expect(res.body.errors.article[0]).to.eql("not found");
+  19 |  }
+  20 |  
+
+TypeError: cannot read property 'article' of undefined
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/17-verify-deletion.bru:18:23)
+    at <anonymous> (/home/claude/w/realworld/specs/api/bruno/articles/17-verify-deletion.bru:19:3)
+    Host: TypeError: cannot read property 'article' of undefined
+    at QuickJSContext.unwrapResult (/home/claude/w/node_modules/quickjs-emscripten-core/dist/index.js:4:28081)
+    at executeQuickJsVmAsync (/home/claude/w/node_modules/@usebruno/js/src/sandbox/quickjs/index.js:211:31)
+    at async ScriptRuntime.runResponseScript (/home/claude/w/node_modules/@usebruno/js/src/runtime/script-runtime.js:321:7)
+    at async runSingleRequest (/home/claude/w/node_modules/@usebruno/cli/src/runner/run-single-request.js:885:24)
+    at async runIteration (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1293:24)
+    at async Object.handler (/home/claude/w/node_modules/@usebruno/cli/src/commands/run.js:1499:33)
+
+Post-Response Tests
+   ✕ Post-Response Script Error
+      cannot read property 'article' of undefined
+Assertions
+   ✕ res.status: eq 404
+      expected 200 to equal 404
+
+📊 Execution Summary
+┌───────────────┬─────────────────────────┐
+│ Metric        │         Result          │
+├───────────────┼─────────────────────────┤
+│ Status        │         ✗ FAIL          │
+├───────────────┼─────────────────────────┤
+│ Requests      │ 17 (8 Passed, 9 Failed) │
+├───────────────┼─────────────────────────┤
+│ Tests         │           0/0           │
+├───────────────┼─────────────────────────┤
+│ Assertions    │          14/17          │
+├───────────────┼─────────────────────────┤
+│ Duration (ms) │          4455           │
+└───────────────┴─────────────────────────┘
